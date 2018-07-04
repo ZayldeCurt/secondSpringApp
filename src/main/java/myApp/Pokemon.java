@@ -1,5 +1,5 @@
 // tag::sample[]
-package hello;
+package myApp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +14,7 @@ public class Pokemon {
     private Long id;
     private String name;
     private String subname;
+    private int weight;
 
     protected Pokemon() {}
 
@@ -22,11 +23,18 @@ public class Pokemon {
         this.subname = subname;
     }
 
+    public Pokemon(String name, String subname, int weight, String speciesName) {
+        this.name = name;
+        this.subname = subname;
+        this.weight = weight;
+    }
+
+
     @Override
     public String toString() {
         return String.format(
-                "Pokemon[id=%d, name='%s', subname='%s']",
-                id, name, subname);
+                "Pokemon[id=%d, name='%s', subname='%s', weight=%d]",
+                id, name, subname, weight);
     }
 
 
@@ -41,5 +49,10 @@ public class Pokemon {
 	public String getSubname() {
 		return subname;
 	}
+
+    public int getWeight() {
+        return weight;
+    }
+
 }
 

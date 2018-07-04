@@ -1,4 +1,4 @@
-package hello;
+package myApp;
 
 import java.util.List;
 
