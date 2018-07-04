@@ -1,6 +1,6 @@
 package myApp.cache;
 
-import myApp.Pokemon;
+import myApp.dto.Pokemon;
 import myApp.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

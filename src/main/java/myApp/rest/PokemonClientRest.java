@@ -1,11 +1,14 @@
 package myApp.rest;
 
-import myApp.Pokemon;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
+import myApp.dto.Greeting;
+import myApp.dto.Pokemon;
 import myApp.cache.PokemonCache;
 import myApp.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,11 +57,41 @@ public class PokemonClientRest {
 
 
 
+//    @RequestMapping("/show")
+//    public void showFromSQLBase(){
+//        Pokemon pokemon = pokemonCache.getPokemon(1L);
+//        System.out.println(pokemon);
+//    }
+
+
     @RequestMapping("/show")
-    public void showFromSQLBase(){
-        Pokemon pokemon = pokemonCache.getPokemon(1L);
-        System.out.println(pokemon);
+    public HttpEntity<Greeting> greeting(
+            @RequestParam(value = "id", required = false, defaultValue = "World") String id) {
+
+        Pokemon pokemon = pokemonCache.getPokemon(Long.parseLong(id));
+        Long longId = Long.parseLong(id);
+        Long nextId = Long.parseLong(id)+1;
+        Long preId = Long.parseLong(id)-1;
+
+
+        Greeting greeting = new Greeting(String.format(" ", id));
+        greeting.add(linkTo(methodOn(PokemonClientRest.class).greeting(id)).withSelfRel());
+        greeting.add(linkTo(methodOn(PokemonClientRest.class).greeting(String.valueOf(nextId))).withRel("next"));
+        greeting.add(linkTo(methodOn(PokemonClientRest.class).greeting(String.valueOf(preId))).withRel("pre"));
+
+        return new ResponseEntity<>(greeting, HttpStatus.OK);
     }
+
+//    @RequestMapping("/greeting")
+//    public HttpEntity<Greeting> greeting(
+//            @RequestParam(value = "name", required = false, defaultValue = "World") String name) {
+//
+//        Greeting greeting = new Greeting(String.format(TEMPLATE, name));
+//        greeting.add(linkTo(methodOn(GreetingController.class).greeting(name)).withSelfRel());
+//
+//        return new ResponseEntity<>(greeting, HttpStatus.OK);
+//    }
+
 
     @RequestMapping("/showAll")
     public List<Pokemon> showAllFromSQLBase(){

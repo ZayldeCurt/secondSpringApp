@@ -23,7 +23,7 @@ public class Application {
 		SpringApplication.run(Application.class);
 	}
 
-
+	//TODO //	https://spring.io/guides/gs/rest-hateoas/
 
 //	@Bean
 //	public CommandLineRunner demo(CustomerRepository repository) {

@@ -1,6 +1,6 @@
 package myApp.service;
 
-import myApp.Pokemon;
+import myApp.dto.Pokemon;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;

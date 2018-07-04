@@ -1,7 +1,7 @@
 package myApp.service;
 
 
-import myApp.Pokemon;
+import myApp.dto.Pokemon;
 
 public interface PokemonService {
 

@@ -1,5 +1,6 @@
 package myApp;
 
+import myApp.dto.Pokemon;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
