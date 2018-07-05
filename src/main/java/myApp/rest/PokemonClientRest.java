@@ -74,7 +74,8 @@ public class PokemonClientRest {
         Long preId = Long.parseLong(id)-1;
 
 
-        Greeting greeting = new Greeting(String.format(" ", id));
+//        Greeting greeting = new Greeting(String.format(" ", id));
+        Greeting greeting = new Greeting(String.format(pokemon.toString(), id));
         greeting.add(linkTo(methodOn(PokemonClientRest.class).greeting(id)).withSelfRel());
         greeting.add(linkTo(methodOn(PokemonClientRest.class).greeting(String.valueOf(nextId))).withRel("next"));
         greeting.add(linkTo(methodOn(PokemonClientRest.class).greeting(String.valueOf(preId))).withRel("pre"));
